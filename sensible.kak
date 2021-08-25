@@ -1,20 +1,18 @@
 
-set global tabstop 4
-set global indentwidth 4
-set global aligntab false
+map global user <c-k> "! open https://github.com/mawww/kakoune#readme<ret>" -docstring "gh:kakoune#readme"
+map global user <c-t> ": e -scratch<ret>! curl -L https://github.com/mawww/kakoune/raw/HEAD/contrib/TRAMPOLINE<ret>gk" -docstring tram
+map global user K ": e %val{config}/kakrc<ret>" -docstring kakrc
 
-set-option global BOM none
-set-option global eolformat lf
-set-option global ui_options ncurses_assistant=cat
-set-option global autoreload yes
-set-option global scrolloff 12,5
+map global user c ": comment-line<ret>" -docstring :comment-line
+map global user C ": comment-block<ret>" -docstring :comment-block
 
 # Highlighters ─────────────────────────────────────────────────────────────────
 
-add-highlighter global/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -lf '↵' -spc ' ' -nbsp '⍽'
+addhl global/ number-lines -relative -hlcursor
+addhl global/ wrap
 
-add-highlighter global/show-matching show-matching
+addhl global/ show-matching
 
 # Highlight trailing spaces
-add-highlighter global/trailing_white_spaces regex \h+$ 0:Error
+addhl global/trailing-whitespaces regex "\h+$" 0:Error
 
